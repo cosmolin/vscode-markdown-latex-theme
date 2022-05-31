@@ -1,0 +1,213 @@
+#no :root {
+  /* == 字体设置 == */
+  /* 基准字体 */
+  /* 备选：Times, "Times New Roman" */
+  --base-Latin-font: "Times New Roman";
+  --base-Chinese-font: "宋体";
+  --base-font-size: 9.5pt;
+  /* 引言字体 */
+  --quote-font: "Latin Modern Roman", "Latin Modern Roman 10", Times,
+    "Times New Roman", "华文仿宋";
+  /* 这里字体用了10pt,比正文字体稍大 */
+  --quote-font-size: 10pt;
+  /* 代码字体（代码中的中文会调用 ui-font） */
+  --code-font: "Latin Modern Mono", "Latin Modern Mono 10", "Courier New";
+  /* 侧边栏字体 */
+  --ui-font: "阿里巴巴普惠体 2.0", "微软雅黑";
+  /* source mode 字体 */
+  /* 默认调用 code-font 和 ui-font */
+  --sourceMode-font: "SF Mono", "阿里巴巴普惠体 2.0", "微软雅黑";
+  /* 目录字体 */
+  /* 默认调用 base-font */
+  --toc-font: "";
+  /* 默认调用 base-font-size */
+  --toc-font-size: "";
+  /* 表格字体 */
+  /* 默认调用 heading-font */
+  --table-title-font: "";
+  /* 默认调用 base-font */
+  --table-font: "";
+  /* 标题字体（总设置） */
+  --heading-Latin-font: var(--base-Latin-font);
+  --heading-Chinese-font: "黑体";
+  /* 标题字体分别设置 */
+  /* 大标题（h1）字体 */
+  --title-Chinese-font: "黑体";
+  --title-font-size: 18pt;
+  /* h2字体 */
+  --h2-Chinese-font: "黑体";
+  --h2-font-size: 14pt;
+  /* h3字体 */
+  --h3-Chinese-font: "黑体";
+  --h3-font-size: 12pt;
+  /* h4字体 */
+  --h4-Chinese-font: "黑体";
+  --h4-font-size: 10pt;
+  /* h5字体 */
+  --h5-Chinese-font: "黑体";
+  --h5-font-size: 10pt;
+  /* h6字体 */
+  --h6-Chinese-font: "黑体";
+  --h6-font-size: 9.5pt;
+  /* 粗体样式设置 */
+  /* 加粗风格时使用的字重；400等同于 normal，700等同于 bold，900等同于 heavy */
+  --strong-weight: 900;
+  /* 基础行距 */
+  --base-line-height: 16pt;
+  /* == 页面设置 == */
+  /* 打印页边距 */
+  --set-margin: 1.8cm 2cm 1.2cm 2cm !important;
+  /* == 控制设置 == */
+  /* 目录中是否显示一级标题 */
+  --toc-show-title: none;
+  /* == 颜色设置 == */
+  /* 超链接颜色 */
+  --link-color-light: #2E67D3;
+  --link-color-dark: #8bb1f9;
+}
+
+body {
+  line-height: var(--base-line-height);
+  background-color: white;
+  color: black;
+}
+
+strong {
+  font-weight: var(--strong-weight);
+}
+
+/* 正文区基本属性 */
+.markdown-body {
+  /* font-family: var(--base-Latin-font), var(--base-Chinese-font), serif; */
+  /* font-size: var(--base-font-size); */
+  /* A4标准宽度 */
+  max-width: 21cm;
+  background-color: white;
+  counter-reset: h2 0 h3 0 h4 0 h5 0 h6 0;
+  padding: var(--set-margin);
+  font-family: "Times New Roman", "宋体", sans-serif;
+  margin: 0 auto;
+}
+
+
+
+.markdown-body p {
+  text-align: left;
+}
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  font-weight: bold;
+  /* 标题字体 */
+  font-family: "Times New Roman", "黑体", sans-serif;
+  page-break-after: avoid !important;
+}
+.markdown-body h1 {
+  text-align: center;
+  column-span: all;
+}
+
+
+.markdown-body table {
+  /* 三线表第一条线宽度 */
+  border-top: 2pt solid;
+  /* 三线表第二条线宽度 */
+  border-bottom: 2pt solid;
+  /* font-family: var(--table-font), var(--base-Latin-font), var(--base-Chinese-font), serif; */
+  /* font-size: var(--base-font-size); */
+  text-align: center;
+  page-break-inside: avoid;
+  border-spacing: 6px;
+  /* 自动布局表格宽度，如果有时内容太紧建议直接加空格吧，我自己看不惯和页面等宽的大表格 */
+  width: auto;
+  /* 使表格默认居中；虽然这个代码不好，但好像没别的实现办法 */
+  margin: 16px auto;
+  border-collapse: collapse;
+}
+.markdown-body table td {
+  padding: 2px;
+}
+.markdown-body table tr {
+  padding: 2px;
+}
+.markdown-body th {
+  padding: 0px 6px;
+}
+.markdown-body thead {
+  /* 表格标题（首行）样式 */
+  /* 三线表表头的线 */
+  border-bottom: 1pt solid;
+  font-family: var(--table-title-font), var(--heading-Latin-font), var(--heading-Chinese-font), serif !important;
+  /* font-size: var(--base-font-size); */
+  font-weight: var(--strong-weight);
+}
+
+
+.markdown-body blockquote {
+  font-style: normal;
+  font-family: var(--quote-font), var(--base-Latin-font), var(--base-Chinese-font), -apple-system, serif;
+  font-size: var(--quote-font-size);
+  padding-left: 16px;
+  padding-right: 20pt;
+  margin-left: 20px;
+}
+
+.markdown-body hr {
+  border-top: solid 0.7px #eee;
+}
+
+.markdown-body img {
+  page-break-inside: avoid;
+}
+
+.markdown-body ul {
+  /* 无序列表第一级：实心圆点 */
+  list-style: disc;
+}
+.markdown-body ul ul {
+  /*list-style: circle;*/
+  /* 请勿删除“–”后的空格, 他们对缩进有一定影响, 下同 */
+  list-style: "–  ";
+  /*left: -0.8rem;*/
+}
+.markdown-body ul ul ul {
+  /* 无序列表第三极：小圈 */
+  list-style: "◦　";
+  left: 0.1rem;
+}
+
+@counter-style first-level-list-style {
+  system: extends decimal
+}
+
+@counter-style second-level-list-style {
+  prefix: '(';
+  suffix: ') ';
+  system: extends lower-alpha;
+}
+
+@counter-style third-level-list-style {
+  system: extends lower-roman;
+}
+
+.markdown-body ol {
+  list-style-type: first-level-list-style;
+  list-style-position: inside;
+}
+.markdown-body ol ol {
+  counter-reset: liist;
+  list-style-type: second-level-list-style;
+  list-style-position: inside;
+}
+.markdown-body ol ol ol {
+  counter-reset: liiist;
+  list-style-type: third-level-list-style;
+  list-style-position: inside;
+}
+
+.markdown-body>pre {
+  background-color: #1e1e1e;
+}
